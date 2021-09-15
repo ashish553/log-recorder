@@ -9,6 +9,7 @@ driver  = webdriver.Chrome('./chromedriver.exe')
 
 f = open('pagesList.txt','w')
 
+# Returns a list of all page links in the provided site(stglink param) 
 def urlCatch(stglink):
   pagesList = []
   driver.get(stglink)
@@ -18,13 +19,10 @@ def urlCatch(stglink):
     tempPage = element.get_attribute('href')
     if isinstance(tempPage,str) and tempPage.startswith(stglink):
       pagesList.append(tempPage)
-
-  # for pagePath in pagesList:
-  #   f.write(pagePath+'\n')
-  # f.close()
   pagesList = list(dict.fromkeys(pagesList))
   return pagesList
 
+# Returns a list of Error messages for the provided url(stgLink parameter)   
 def findError(stageLink):
   errorMessageList= []
   driver.get(stageLink)
@@ -38,8 +36,7 @@ def findError(stageLink):
 
 # Calling the functions
 allPages = urlCatch('https://www.accenture.com')
-# print(allPages)
-# masterList = []
+
 for pageLink in allPages:
   f.write(pageLink+'\n')
   errorList = findError(pageLink)
