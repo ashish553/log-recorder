@@ -35,7 +35,7 @@ def findError(stageLink):
   return errorMessageList
 
 # Calling the functions
-allPages = urlCatch('https://www.accenture.com')
+allPages = urlCatch('https://www.google.com')
 
 for pageLink in allPages:
   f.write(pageLink+'\n')
